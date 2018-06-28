@@ -105,6 +105,9 @@ function Element(id, isMine) {
             && prev.getTime() === that.getTime()) {
             that.setVisibleName(false);
             that.setVisibleProfile(false);
+        } else {
+            that.setVisibleName(true);
+            that.setVisibleProfile(true);
         }
 
         // 1. 다음꺼와 나의 이름이 같으면서 나의 시간이 같으면 나의 시간을 삭제한다.
@@ -112,6 +115,8 @@ function Element(id, isMine) {
             && next.getUserName() === that.getUserName()
             && next.getTime() === that.getTime()) {
             that.setVisibleTime(false);
+        } else {
+            that.setVisibleTime(true);
         }
         // 나의 뷰를 구성하면 된다!
     };
