@@ -1,0 +1,84 @@
+body {
+  padding: 0;
+  display: flex;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  background: #333;
+  height: 100vh; }
+
+.content {
+  width: 360px;
+  height: 480px;
+  background: #fff; }
+  .content .chatting-field {
+    height: 430px;
+    overflow-y: scroll; }
+    .content .chatting-field .chat-group {
+      display: flex;
+      flex-flow: column;
+      padding: 12px; }
+      .content .chatting-field .chat-group .name {
+        width: 100%;
+        font-size: 12px; }
+      .content .chatting-field .chat-group .chat {
+        display: flex; }
+        .content .chatting-field .chat-group .chat .profile {
+          padding-right: 8px; }
+          .content .chatting-field .chat-group .chat .profile .profile-image {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #333; }
+        .content .chatting-field .chat-group .chat .delete {
+          padding: 4px;
+          align-self: flex-end; }
+        .content .chatting-field .chat-group .chat .empty {
+          flex: 1; }
+        .content .chatting-field .chat-group .chat .text-group {
+          width: auto;
+          display: inline-block;
+          border-radius: 5px;
+          font-size: 12px;
+          color: #fff; }
+          .content .chatting-field .chat-group .chat .text-group .name {
+            text-align: right;
+            color: #333; }
+          .content .chatting-field .chat-group .chat .text-group .text {
+            display: inline-block;
+            word-break: break-all;
+            background: #555;
+            padding: 8px; }
+        .content .chatting-field .chat-group .chat .date {
+          align-self: flex-end;
+          font-size: 12px;
+          color: #333;
+          padding: 0 4px; }
+      .content .chatting-field .chat-group.receive .delete {
+        display: none; }
+      .content .chatting-field .chat-group.receive .chat {
+        flex-direction: row-reverse; }
+        .content .chatting-field .chat-group.receive .chat .text-group .name {
+          text-align: left; }
+        .content .chatting-field .chat-group.receive .chat .text-group .text {
+          background: #215fec; }
+  .content .message-send-group {
+    height: 50px;
+    background: #eee;
+    display: flex;
+    overflow-y: scroll; }
+    .content .message-send-group .message {
+      width: calc(100% - 50px); }
+    .content .message-send-group .send-button {
+      width: 50px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 30px;
+      color: #fff;
+      background: #555;
+      cursor: pointer; }
+      .content .message-send-group .send-button:hover {
+        background: #666; }
+
+/*# sourceMappingURL=style.css.map */

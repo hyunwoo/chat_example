@@ -1,0 +1,87 @@
+body
+  padding: 0
+  display: flex
+  margin: 0
+  align-items: center
+  justify-content: center
+  background: #333
+  height: 100vh
+
+.content
+  width: 360px
+  height: 480px
+  background: #fff
+
+  .chatting-field
+    height: 430px
+    overflow-y: scroll
+    .chat-group
+      display: flex
+      flex-flow: column
+      padding: 12px
+      .name
+        width: 100%
+        font-size: 12px
+
+      .chat
+        display: flex
+        .profile
+          padding-right : 8px
+          .profile-image
+            width: 32px
+            height: 32px
+            border-radius: 50%
+            background: #333
+        .delete
+          padding : 4px
+          align-self: flex-end
+        .empty
+          flex: 1
+        .text-group
+          width: auto
+          display: inline-block
+          border-radius: 5px
+          font-size: 12px
+          color: #fff
+          .name
+            text-align: right
+            color : #333
+          .text
+            display: inline-block
+            word-break: break-all
+            background: #555
+            padding: 8px
+        .date
+          align-self: flex-end
+          font-size: 12px
+          color: #333
+          padding: 0 4px
+      &.receive
+        .delete
+          display: none
+        .chat
+          flex-direction: row-reverse
+          .text-group
+            .name
+              text-align: left
+            .text
+              background: #215fec
+  .message-send-group
+    height: 50px
+    background: #eee
+    display: flex
+    overflow-y: scroll
+    .message
+      width: calc(100% - 50px)
+    .send-button
+      width: 50px
+      height: 50px
+      text-align: center
+      line-height: 50px
+      font-size: 30px
+      color: #fff
+      background: #555
+      cursor: pointer
+      &:hover
+        background: #666
+
