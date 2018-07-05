@@ -6,6 +6,8 @@
 
 //
 
+'use strict'
+
 const $root = $('.chatting-field');
 const template = `<div class="chat-group">
   <div class="chat">
@@ -21,6 +23,7 @@ const template = `<div class="chat-group">
     </div>
   </div>
 </div>`;
+const modal = new CreateModal('.modal.chat-message');
 
 function Element(id, isMine) {
     const index = index;
@@ -31,13 +34,22 @@ function Element(id, isMine) {
         $ele.find('.profile').remove();
         $ele.find('.name').remove();
         $ele.find('.delete').on('click', function () {
-            chatApi.deleteMessage(id);
+            modal.open({
+                    headerText: 'WT',
+                    contentText: 'WT',
+                    positiveText: 'WT',
+                    negativeText: 'WT',
+                },
+                function () {
+                    chatApi.deleteMessage(id);
+                });
         })
     }
     $ele.attr('id', id);
 
     let elementData = {};
-    if (isMine !== undefined && !isMine) $ele.addClass('receive');
+    if (isMine !== undefined && !isMine)
+        $ele.addClass('receive');
     // message , date , id setting
 
     this.getTime = function () {
@@ -58,7 +70,7 @@ function Element(id, isMine) {
         // for(var i = 0 ; i < keys.length ; i ++){
         //     ele.find(`[type=${keys[i]}]`).text(data[keys[i]]);
         // }
-        $ele.find('.text').text(data.message);
+        $ele.find('.text').html(data.message);
         $ele.find('.name').text(data.id);
         $ele.find('.date').text(data.date);
     };
@@ -138,27 +150,8 @@ function Element(id, isMine) {
     return this;
 }
 
-//
 
-/** const Util = new function(){
-*   return this;
-* }
- */
-
-// const api = {
-//     dataSet : {
-//
-//     },
-//     get (){
-//
-//     },
-//     set () {
-//
-//     },
-// };
-
-
-const userId = 'jaejong';
+const userId = 'h.hyunwoo';
 // 메세지 추가 이벤트
 const eles = {};
 let lastElement = null;
@@ -192,53 +185,64 @@ chatApi.on('child_removed', function (d) {
     // console.log(d);
 });
 
+
 const $textarea = $('textarea');
+
+
 $textarea.on('keyup', function (event) {
+    console.log(this);
+
+
+    // this.attr('')
+
+
     const val = $textarea.val();
     if (event.keyCode === 13) {
         console.log('enter !!!', val);
         $textarea.val('');
+        if (val.replace('\n', '') === '') return;
         if (val !== '') chatApi.sendMessage(userId, val);
     }
 });
 
 
-// test
-// var ele = new Element('id');
-// ele.setMessage({message:'asdf', id:'hw', date:'2019'});
-// console.log(ele);
-//
-// var ele1 = new Element('id');
-// ele1.setMessage({message:'asdf', id:'hw', date:'2019'});
-// ele1.setVisibleProfile(false);
-// console.log(ele);
-//
-// var ele2 = new Element('id');
-// ele2.setMessage({message:'asdf', id:'hw', date:'2019'});
-// ele2.setVisibleName(false);
-// console.log(ele);
-//
-// var ele3 = new Element('id');
-// ele3.setMessage({message:'asdf', id:'hw', date:'2019'});
-// ele3.setVisibleTime(false);
-// console.log(ele);
-//
-//
-// var ele = new Element('id', false);
-// ele.setMessage({message:'asdf', id:'hw', date:'2019'});
-// console.log(ele);
-//
-// var ele1 = new Element('id', false);
-// ele1.setMessage({message:'asdf', id:'hw', date:'2019'});
-// ele1.setVisibleProfile(false);
-// console.log(ele);
-//
-// var ele2 = new Element('id', false);
-// ele2.setMessage({message:'asdf', id:'hw', date:'2019'});
-// ele2.setVisibleName(false);
-// console.log(ele);
-//
-// var ele3 = new Element('id', false);
-// ele3.setMessage({message:'asdf', id:'hw', date:'2019'});
-// ele3.setVisibleTime(false);
-// console.log(ele);
+function CreateModal(targetClass) {
+    const $modal = $(targetClass);
+    const $buttonOk = $modal.find('.button.positive');
+    const $buttonCancel = $modal.find('.button.negative');
+    const that = this;
+
+    let positiveEvent = null;
+    this.open = function (option,
+                          event) {
+        positiveEvent = event;
+        $modal.attr('status', 'open');
+    };
+
+    this.close = function () {
+        $modal.attr('status', 'close');
+    };
+
+    $buttonOk.on('click', function () {
+        if (positiveEvent !== null) positiveEvent();
+        that.close();
+    });
+    $buttonCancel.on('click', function () {
+        that.close();
+    });
+    return this;
+};
+
+
+// setInterval
+// var i =0;
+// var it = setInterval(function () {
+//     i++;
+//     console.log('interval', i);
+//     if (i > 10) clearInterval(it);
+// }, 100);
+
+
+// setTimeout(function () {
+//     modal.close();
+// }, 2000);

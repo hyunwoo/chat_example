@@ -1,0 +1,59 @@
+extends layout
+block content
+  link(href='/stylesheets/animate.css' rel='stylesheet')
+  link(href='/stylesheets/textFinder.css' rel='stylesheet')
+  link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+
+  .section
+    .button-sector-opener
+      .i.material-icons chevron_right
+    .left-sector
+      .nav
+      .command-zone
+        .separator Highlight Option
+        .check-group
+          .check-button.component(selected)
+            .check.icon
+              .outer
+              .i.material-icons check
+            .text background
+          .check-button.component(selected)
+            .check.icon
+              .outer
+              .i.material-icons check
+            .text underline
+          .check-button.component(selected)
+            .check.icon
+              .outer
+              .i.material-icons check
+            .text italic
+          .check-button.component
+            .check.icon
+              .outer
+              .i.material-icons check
+            .text bold
+        .separator Search Option
+        .radio-group
+          .radio-button.component
+            .radio.icon
+              .outer-circle
+              .inner-circle
+            .text Letter
+          .radio-button.component
+            .radio.icon
+              .outer-circle
+              .inner-circle
+            .text Word
+          .radio-button.component(selected)
+            .radio.icon
+              .outer-circle
+              .inner-circle
+            .text Sentence
+
+    .right-sector
+      .nav
+        input
+      .text-zone asdfasdf
+      .result-zone
+  script(src='/javascripts/components.js')
+  script(src='/javascripts/textFinder.js')

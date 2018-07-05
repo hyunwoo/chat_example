@@ -26,14 +26,14 @@ body
       .chat
         display: flex
         .profile
-          padding-right : 8px
+          padding-right: 8px
           .profile-image
             width: 32px
             height: 32px
             border-radius: 50%
             background: #333
         .delete
-          padding : 4px
+          padding: 4px
           align-self: flex-end
         .empty
           flex: 1
@@ -45,7 +45,7 @@ body
           color: #fff
           .name
             text-align: right
-            color : #333
+            color: #333
           .text
             display: inline-block
             word-break: break-all
@@ -85,3 +85,48 @@ body
       &:hover
         background: #666
 
+.modal
+  display: flex
+  opacity: 0
+  transition: opacity 0.2s
+  pointer-events: none
+  &[status=open]
+    opacity: 1
+    pointer-events: all
+  position: fixed
+  left: 0
+  top: 0
+  width: 100%
+  height: 100vh
+  z-index: 100000
+  background: rgba(0, 0, 0, 0.6)
+
+  align-items: center
+  justify-content: center
+  .modal-content
+    width: 300px
+    background: #fff
+    .content-group
+      padding: 8px
+      color: #555
+      .header
+        padding: 8px
+        font-weight: 600
+        font-size: 24px
+      .text
+        padding: 8px
+        font-size: 16px
+    .button-group
+      padding: 8px
+      display: flex
+      .button
+        cursor: pointer
+        &:hover
+          color: #3884fd
+        font-weight: 600
+        padding: 8px
+        font-size: 16px
+        color: #215fec
+
+.flex-empty
+  flex: 1
